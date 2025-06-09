@@ -35,20 +35,11 @@ public class ThirdPersonCamera : MonoBehaviour
         // hitung rotasi kamera
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
 
-        Zoom();
         // atur posisi kamera sesuai keinginan
         Vector3 desiredPosition = player.position + rotation * offset;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed*Time.deltaTime);
 
         transform.LookAt(player.position + Vector3.up * 1.5f);
 
-    }
-
-    void Zoom() {
-        scroll = Input.GetAxis("Mouse ScrollWheel");
-
-        if (scroll != 0f ) {
-            offset.z = offset.z + scroll;
-        }
     }
 }
