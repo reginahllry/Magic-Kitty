@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Obstacle
+  - Hitbox
+  - CinemachineTarget
+  - Camera
+  - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -12,9 +18,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Obstacle
+  - Ground
   - 
   - 
   - 
