@@ -28,6 +28,7 @@ public class AIEnemyController : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     private EnemyShooter shooterScript;
+    private EnemyGroundPoundController groundPoundScript;
 
 
     [Header("Patroling")]
@@ -60,6 +61,7 @@ public class AIEnemyController : MonoBehaviour
         walkPointRangeZ = planeSize.z / 2;
 
         shooterScript = GetComponent<EnemyShooter>();
+        groundPoundScript = GetComponent<EnemyGroundPoundController>();
     }
 
     private void Update()
@@ -76,7 +78,7 @@ public class AIEnemyController : MonoBehaviour
     }
 
     private void Patroling()
-    {   
+    {
         if (sceneName == "Level1" && !playingFootsteps)
         {
             float speed = 0.5f;
@@ -86,6 +88,12 @@ public class AIEnemyController : MonoBehaviour
         else if (sceneName == "Level2" && !playingFootsteps)
         {
             float speed = 0.4f;
+            StartFootsteps(speed);
+        }
+
+        else if (sceneName == "Level3" && !playingFootsteps)
+        {
+            float speed = 0.7f;
             StartFootsteps(speed);
         }
         
@@ -170,7 +178,7 @@ public class AIEnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if (sceneName == "Level1")
+        if (sceneName == "Level1" | sceneName == "Level3")
         {
             walkPointSet = false;
             //Make sure enemy doesn't move
@@ -198,10 +206,10 @@ public class AIEnemyController : MonoBehaviour
         // if havent attacked
         if (!alreadyAttacked)
         {
+            animator.SetTrigger("Attack");
             // for bringer of death
             if (sceneName == "Level1")
             {
-                animator.SetTrigger("Attack");
 
                 Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
                 Vector3 offset = new Vector3(5f, 0f, 0f);
@@ -221,20 +229,22 @@ public class AIEnemyController : MonoBehaviour
                         Invoke(nameof(DamagePlayer), 0.5f);
                     }
                 }
-
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
 
             // for flying demon
             else if (sceneName == "Level2")
             {
-                animator.SetTrigger("Attack");
-
                 shooterScript.ShootAtPlayer();
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
+
+            else if (sceneName == "Level3")
+            {
+                timeBetweenAttacks = 4f;
+                groundPoundScript.GroundPound();
+            }
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
@@ -259,6 +269,11 @@ public class AIEnemyController : MonoBehaviour
         else if (sceneName == "Level2")
         {
             SFXManager.Play("Impact_FlyingDemon");
+        }
+
+        else if (sceneName == "Level3")
+        {
+            SFXManager.Play("MonsterScream");
         }
 
         health -= damage;
@@ -337,6 +352,11 @@ public class AIEnemyController : MonoBehaviour
         else if (sceneName == "Level2")
         {
             SFXManager.Play("Wings", true, 0.1f);
+        }
+
+        else if (sceneName == "Level3")
+        {
+            SFXManager.Play("MonsterJump", true, 0.4f);
         }
     }
     

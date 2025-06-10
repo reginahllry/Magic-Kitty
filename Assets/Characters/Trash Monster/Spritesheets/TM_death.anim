@@ -21,17 +21,21 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1373916567, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - time: 0.1
-      value: {fileID: -879607094, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - time: 0.2
-      value: {fileID: 953848005, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - time: 0.3
-      value: {fileID: -888321984, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - time: 0.4
-      value: {fileID: 1246736855, guid: b0e28609d640d254d848c818588b09eb, type: 3}
+      value: {fileID: 1119261820, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - time: 0.06666667
+      value: {fileID: -731648058, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - time: 0.15
+      value: {fileID: 1689232441, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - time: 0.21666667
+      value: {fileID: -1667834641, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - time: 0.28333333
+      value: {fileID: -940522396, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - time: 0.35
+      value: {fileID: -1270108802, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - time: 0.43333334
+      value: {fileID: 532023360, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
     - time: 0.5
-      value: {fileID: -778629741, guid: b0e28609d640d254d848c818588b09eb, type: 3}
+      value: {fileID: 1061470456, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,12 +58,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1373916567, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - {fileID: -879607094, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - {fileID: 953848005, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - {fileID: -888321984, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - {fileID: 1246736855, guid: b0e28609d640d254d848c818588b09eb, type: 3}
-    - {fileID: -778629741, guid: b0e28609d640d254d848c818588b09eb, type: 3}
+    - {fileID: 1119261820, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: -731648058, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: 1689232441, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: -1667834641, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: -940522396, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: -1270108802, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: 532023360, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
+    - {fileID: 1061470456, guid: 90536cb68ef12e64d8ef55e6febea8d6, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -84,4 +90,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.51666665
+    functionName: DestroyEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

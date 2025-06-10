@@ -5,14 +5,12 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float smoothSpeed = 5f;
     [SerializeField] private float rotationSpeed = 2f;
-    [SerializeField] private float scrollSpeed = 2f;
     [SerializeField] private float distance = 6f;
     [SerializeField] private float height = -1f;
     [SerializeField] private float side = 2f;
     private Vector3 offset;
     private float yaw = 0;
     private float pitch = 10;
-    private float scroll;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

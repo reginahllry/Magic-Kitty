@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class CollideHitbox : MonoBehaviour
 {
-    private GameObject player;
-    public float damage;
-
+    private PlayerCombat player;
+    private AIEnemyController enemy;
+    private float damage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        damage = GetComponentInParent<AIEnemyController>().damage;
+        damage = enemy.damage;
     }
 
     void OnTriggerEnter(Collider other)
@@ -19,7 +18,7 @@ public class CollideHitbox : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Player take damage");
-            player.GetComponent<PlayerCombat>().TakeDamage(damage);
+            player.TakeDamage(damage);
         }
     }
 }

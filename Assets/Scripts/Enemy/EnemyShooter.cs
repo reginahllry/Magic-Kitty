@@ -1,13 +1,9 @@
-using System.IO;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyShooter : MonoBehaviour
 {
-    [SerializeField] private float timer = 5;
     [SerializeField] private SpriteRenderer spriteRenderer;
     public Transform player;
-    private float bulletTime;
 
     public GameObject enemyProjectile;
     public Transform spawnPointLeft, spawnPointRight;

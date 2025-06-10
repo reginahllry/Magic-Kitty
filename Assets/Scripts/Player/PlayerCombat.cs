@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using System.Collections.Generic;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private Animator anim;
     public float damage = 20f;
+
+    // public ParticleSystem blast;
+    // public List<ParticleCollisionEvent> collisionEvents;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,4 +55,9 @@ public class PlayerCombat : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
+
+    // void OnParticleCollision(GameObject other)
+    // {
+    //     Debug.Log("BLAST HIT PLAYER");
+    // }
 }

@@ -6,7 +6,6 @@ public class SpellFollowPlayer : MonoBehaviour
     [SerializeField] private Vector3 offset;    
     private float yaw = 0f;
     private float rotationSpeed = 2f;
-    private float smoothSpeed = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
