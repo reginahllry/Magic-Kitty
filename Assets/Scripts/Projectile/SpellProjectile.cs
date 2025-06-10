@@ -51,7 +51,7 @@ public class SpellProjectile : MonoBehaviour
             anim.SetBool("thunder_cast", spellType == 4);
         }
 
-        float speed = 10f;
+        float speed = 45f;
 
         // TODO: cant just do this bcs we didnt code it to look at the destination
         rb.linearVelocity = transform.forward * speed;
@@ -59,10 +59,9 @@ public class SpellProjectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        rb.linearVelocity = Vector3.zero;
-
-        if (other.gameObject.layer != 5 | other.gameObject.layer != 2)
+        if (other.gameObject.layer != 5 && other.gameObject.layer != 2)
         {
+            rb.linearVelocity = Vector3.zero;
             if (other.tag == "Enemy")
             {
                 // plays enemy impact sound in AIEnemyController
@@ -76,6 +75,8 @@ public class SpellProjectile : MonoBehaviour
 
             anim.SetTrigger("death");
         }
+
+
 
     }
 

@@ -38,7 +38,12 @@ public class PlayerShooter : MonoBehaviour
             anim.SetBool("Aiming", true);
             aimVirtualCamera.gameObject.SetActive(true);
         }
-        else aimVirtualCamera.gameObject.SetActive(false);
+
+        else
+        {
+            anim.SetBool("Aiming", false);
+            aimVirtualCamera.gameObject.SetActive(false);
+        }
     }
 
     void Shoot()

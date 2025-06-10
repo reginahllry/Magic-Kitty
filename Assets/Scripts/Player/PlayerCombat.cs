@@ -30,6 +30,14 @@ public class PlayerCombat : MonoBehaviour
 
     public void Die()
     {
+        SFXManager.Play("ChloeDeath", false, 1f);
+        Invoke(nameof(GameOver), 1.5f);
+        // Debug.Log("time scale: "+ Time.timeScale);
+    }
+
+    void GameOver()
+    {
+        Time.timeScale = 0;
         anim.enabled = false;
     }
 

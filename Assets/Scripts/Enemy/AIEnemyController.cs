@@ -27,6 +27,7 @@ public class AIEnemyController : MonoBehaviour
     public float damage = 7f;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    private EnemyShooter shooterScript;
 
 
     [Header("Patroling")]
@@ -37,6 +38,8 @@ public class AIEnemyController : MonoBehaviour
 
     private bool playingFootsteps;
     private string sceneName;
+
+
 
     private void Awake()
     {
@@ -55,6 +58,8 @@ public class AIEnemyController : MonoBehaviour
 
         walkPointRangeX = planeSize.x / 2;
         walkPointRangeZ = planeSize.z / 2;
+
+        shooterScript = GetComponent<EnemyShooter>();
     }
 
     private void Update()
@@ -165,37 +170,71 @@ public class AIEnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        walkPointSet = false;
-        //Make sure enemy doesn't move
-        animator.SetBool("Walk", false);
-        agent.SetDestination(transform.position);
-
-        // if havent attacked
-        if (!alreadyAttacked)
+        if (sceneName == "Level1")
         {
-            animator.SetTrigger("Attack");
+            walkPointSet = false;
+            //Make sure enemy doesn't move
+            animator.SetBool("Walk", false);
+            agent.SetDestination(transform.position);
+        }
 
-            Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
-            Vector3 offset = new Vector3(5f, 0f, 0f);
+        else if (sceneName == "Level2")
+        {
+            Vector3 walkNearPlayer = transform.position - player.transform.position;
 
-            if (isFacingLeft)
+            if (walkNearPlayer.magnitude <= 10f)
             {
-                if (Physics.CheckBox(transform.position - offset, halfBoxSize))
-                {
-                    Invoke(nameof(DamagePlayer), 0.5f);
-                }
+                Debug.Log("Now Near Player");
+                walkPointSet = false;
+                animator.SetBool("Walk", false);
             }
 
             else
             {
-                if (Physics.CheckBox(transform.position + offset, halfBoxSize))
+                agent.SetDestination(walkNearPlayer);
+            }
+        }
+
+        // if havent attacked
+        if (!alreadyAttacked)
+        {
+            // for bringer of death
+            if (sceneName == "Level1")
+            {
+                animator.SetTrigger("Attack");
+
+                Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
+                Vector3 offset = new Vector3(5f, 0f, 0f);
+
+                if (isFacingLeft)
                 {
-                    Invoke(nameof(DamagePlayer), 0.5f);
+                    if (Physics.CheckBox(transform.position - offset, halfBoxSize))
+                    {
+                        Invoke(nameof(DamagePlayer), 0.5f);
+                    }
                 }
+
+                else
+                {
+                    if (Physics.CheckBox(transform.position + offset, halfBoxSize))
+                    {
+                        Invoke(nameof(DamagePlayer), 0.5f);
+                    }
+                }
+
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
 
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            // for flying demon
+            else if (sceneName == "Level2")
+            {
+                animator.SetTrigger("Attack");
+
+                shooterScript.ShootAtPlayer();
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
         }
     }
 
@@ -211,6 +250,7 @@ public class AIEnemyController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        animator.SetTrigger("Hurt");
         if (sceneName == "Level1")
         {
             SFXManager.Play("Impact_BOD");
@@ -228,6 +268,9 @@ public class AIEnemyController : MonoBehaviour
             agent.SetDestination(transform.position);
             animator.SetTrigger("Death");
             StopFootsteps();
+
+            SFXManager.Play("FD_Death", false);
+
             Invoke(nameof(DestroyEnemy), 1f);
         }
     }
@@ -282,16 +325,6 @@ public class AIEnemyController : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Projectile")
-        {
-            animator.SetTrigger("Hurt");
-            agent.SetDestination(transform.position);
-        }
-    }
-
-
     void PlayFootsteps()
     {
         Debug.Log("Playing ENEMY footsteps");
@@ -303,7 +336,7 @@ public class AIEnemyController : MonoBehaviour
 
         else if (sceneName == "Level2")
         {
-            SFXManager.Play("Wings", true);
+            SFXManager.Play("Wings", true, 0.1f);
         }
     }
     

@@ -29,7 +29,7 @@ public class SFXManager : MonoBehaviour
         }
     }
 
-    public static void Play(string soundName, bool randomPitch = false)
+    public static void Play(string soundName, bool randomPitch = false, float volume = 1)
     {
         Debug.Log("Playing: " + soundName);
         AudioClip audioClip = sfxLibrary.GetRandomClip(soundName);
@@ -39,12 +39,12 @@ public class SFXManager : MonoBehaviour
             if (randomPitch)
             {
                 randomPitchAudioSource.pitch = Random.Range(1f, 1.8f);
-                randomPitchAudioSource.PlayOneShot(audioClip);
+                randomPitchAudioSource.PlayOneShot(audioClip, volume);
             }
 
             else
             {
-                audioSource.PlayOneShot(audioClip);
+                audioSource.PlayOneShot(audioClip, volume);
             }
         }
     }

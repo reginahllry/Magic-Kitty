@@ -1,30 +1,38 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyShooter : MonoBehaviour
 {
-    public NavMeshAgent enemy;
-    public Transform player;
     [SerializeField] private float timer = 5;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    public Transform player;
     private float bulletTime;
 
     public GameObject enemyProjectile;
-    public Transform spawnPoint;
+    public Transform spawnPointLeft, spawnPointRight;
+    private bool isFacingRight;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        isFacingRight = spriteRenderer.flipX;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShootAtPlayer()
     {
+        SFXManager.Play("Fireball2", true, 0.7f);
+        if (isFacingRight)
+        {
+            Vector3 aimDir = (player.transform.position - spawnPointRight.position).normalized;
+            // just thought that the AI will always try to shoot the player anyway, so just make the projectile also towards the player
+            Instantiate(enemyProjectile, spawnPointRight.transform.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            // cooldown already handled in aienemycontroller script
+        }
 
-    }
-
-    void ShootAtPlayer()
-    {
-           
-    }
+        else
+        {
+            Vector3 aimDir = (player.transform.position - spawnPointLeft.position).normalized;
+            Instantiate(enemyProjectile, spawnPointLeft.transform.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        }
+    }   
 }

@@ -62,8 +62,9 @@ public class PlayerMovement : MonoBehaviour
     private void Dash()
     {
         if (dashCdTimer > 0) return;
-        
+
         Vector3 applyForce = moveDir * dashForce;
+        SFXManager.Play("ChloeDash", true, 0.8f);
         body.AddForce(applyForce.x, 0, applyForce.z, ForceMode.Impulse);
         Invoke(nameof(ResetDash), dashDuration);
     }
