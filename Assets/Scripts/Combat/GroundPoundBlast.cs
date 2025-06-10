@@ -19,7 +19,7 @@ public class GroundPoundBlast : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        print("ParticleCollision:" +other.gameObject.tag);
+        print("ParticleCollision:" + other.gameObject.tag);
         int numCollisionEvents = blast.GetCollisionEvents(other, collisionEvents);
 
         Rigidbody rb = other.GetComponent<Rigidbody>();

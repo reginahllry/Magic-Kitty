@@ -301,13 +301,13 @@ public class AIEnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
 
-        Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
-        Vector3 offset = new Vector3(5f, 0f, 0f);
+        // Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
+        // Vector3 offset = new Vector3(5f, 0f, 0f);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + offset, halfBoxSize);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position - offset, halfBoxSize);
+        // Gizmos.color = Color.blue;
+        // Gizmos.DrawWireCube(transform.position + offset, halfBoxSize);
+        // Gizmos.color = Color.green;
+        // Gizmos.DrawWireCube(transform.position - offset, halfBoxSize);
     }
 
     private void CheckFlip()
