@@ -77,6 +77,8 @@ public class GameOverManager : MonoBehaviour
         Debug.Log("Loading Main Menu");
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+
+        sceneName = "MainMenu";
     }
 }
 

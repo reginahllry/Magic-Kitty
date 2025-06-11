@@ -40,6 +40,12 @@ public class PlayerCombat : MonoBehaviour
 
     public void Die()
     {
+        if (gameObject.scene.name == "Level 3")
+        {
+            SFXManager.Play("Gunshot");
+            return;
+        }
+
         SFXManager.Play("ChloeDeath", false, 1f);
         Invoke(nameof(GameOver), 0f);
         // Debug.Log("time scale: "+ Time.timeScale);
@@ -48,8 +54,8 @@ public class PlayerCombat : MonoBehaviour
     void GameOver()
     {
         anim.enabled = false;
-        gom.GameOver();
 
+        gom.GameOver();
         print("PLayerCombat GameOver triggered");
     }
 
