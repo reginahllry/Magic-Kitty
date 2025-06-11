@@ -40,6 +40,8 @@ public class AIEnemyController : MonoBehaviour
     private bool playingFootsteps;
     private string sceneName;
 
+    [Header("Portal")]
+    public GameObject portal;
 
 
     private void Awake()
@@ -291,6 +293,8 @@ public class AIEnemyController : MonoBehaviour
 
             SFXManager.Play("FD_Death", false);
 
+            portal.SetActive(true);
+            portal.GetComponent<NextScenePortal>().playerWin = true;
             Invoke(nameof(DestroyEnemy), 1f);
         }
     }
