@@ -7,7 +7,7 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] private GameObject enemy;
     private int spellType;
     private Rigidbody rb;
-    private float damage;
+    private int damage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()

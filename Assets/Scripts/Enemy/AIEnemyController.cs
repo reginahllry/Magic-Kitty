@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR;
 
 public class AIEnemyController : MonoBehaviour
 {
@@ -23,8 +22,9 @@ public class AIEnemyController : MonoBehaviour
 
 
     [Header("Combat")]
-    public float health;
-    public float damage = 7f;
+    public EnemyHealthBar healthbar;
+    public int health;
+    public int damage = 7;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     private EnemyShooter shooterScript;
@@ -62,6 +62,8 @@ public class AIEnemyController : MonoBehaviour
 
         shooterScript = GetComponent<EnemyShooter>();
         groundPoundScript = GetComponent<EnemyGroundPoundController>();
+
+        healthbar.SetMaxHealth(health);
     }
 
     private void Update()
@@ -204,21 +206,22 @@ public class AIEnemyController : MonoBehaviour
         }
 
         // if havent attacked
-        if (!alreadyAttacked)
+        if (!alreadyAttacked && !animator.GetBool("Hurt"))
         {
             animator.SetTrigger("Attack");
             // for bringer of death
             if (sceneName == "Level1")
             {
-
                 Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
                 Vector3 offset = new Vector3(5f, 0f, 0f);
+
+                SFXManager.Play("BOD_Slash_Up", true);
 
                 if (isFacingLeft)
                 {
                     if (Physics.CheckBox(transform.position - offset, halfBoxSize))
                     {
-                        Invoke(nameof(DamagePlayer), 0.5f);
+                        Invoke(nameof(DamagePlayer), 0.6f);
                     }
                 }
 
@@ -226,7 +229,7 @@ public class AIEnemyController : MonoBehaviour
                 {
                     if (Physics.CheckBox(transform.position + offset, halfBoxSize))
                     {
-                        Invoke(nameof(DamagePlayer), 0.5f);
+                        Invoke(nameof(DamagePlayer), 0.6f);
                     }
                 }
             }
@@ -250,6 +253,7 @@ public class AIEnemyController : MonoBehaviour
 
     private void DamagePlayer()
     {
+        SFXManager.Play("BOD_Slash_Down");
         player.GetComponent<PlayerCombat>().TakeDamage(damage);
     }
 
@@ -258,7 +262,7 @@ public class AIEnemyController : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         animator.SetTrigger("Hurt");
         if (sceneName == "Level1")
@@ -277,6 +281,7 @@ public class AIEnemyController : MonoBehaviour
         }
 
         health -= damage;
+        healthbar.SetHealth(health);
 
         if (health <= 0)
         {
@@ -301,13 +306,13 @@ public class AIEnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
 
-        // Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
-        // Vector3 offset = new Vector3(5f, 0f, 0f);
+        Vector3 halfBoxSize = new Vector3(8f, 2.5f, 5f);
+        Vector3 offset = new Vector3(5f, 0f, 0f);
 
-        // Gizmos.color = Color.blue;
-        // Gizmos.DrawWireCube(transform.position + offset, halfBoxSize);
-        // Gizmos.color = Color.green;
-        // Gizmos.DrawWireCube(transform.position - offset, halfBoxSize);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + offset, halfBoxSize);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position - offset, halfBoxSize);
     }
 
     private void CheckFlip()

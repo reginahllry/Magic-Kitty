@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GroundPoundBlast : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private GameObject enemy;
     public ParticleSystem blast;
     public List<ParticleCollisionEvent> collisionEvents;

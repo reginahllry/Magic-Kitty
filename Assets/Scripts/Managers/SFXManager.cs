@@ -51,16 +51,16 @@ public class SFXManager : MonoBehaviour
 
     void Start()
     {
-        sfxSlider.onValueChanged.AddListener(delegate { OnValueChanged(); });
+        // sfxSlider.onValueChanged.AddListener(delegate { OnValueChanged(); });
     }
 
     public static void SetVolume(float volume)
     {
-        audioSource.volume = volume;
+        // audioSource.volume = volume;
     }
 
     public void OnValueChanged()
     {
-        SetVolume(sfxSlider.value);
+        // SetVolume(sfxSlider.value);
     }
 }

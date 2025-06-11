@@ -1,14 +1,19 @@
 using UnityEngine;
 using Cinemachine;
-using System.Collections.Generic;
+using System;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public float maxHealth = 150;
-    float currentHealth;
+    public static event Action OnPlayerDamaged;
+    public static event Action OnPlayerHealed;
+    // public static event Action OnPlayerDeath;
+
+    public float maxHealth = 200;
+    public float currentHealth;
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private Animator anim;
-    public float damage = 20f;
+    public int damage = 20;
+    public GameOverManager gom;
 
     // public ParticleSystem blast;
     // public List<ParticleCollisionEvent> collisionEvents;
@@ -21,11 +26,12 @@ public class PlayerCombat : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
-        anim.SetTrigger("Hurt");
         currentHealth -= damage;
+        OnPlayerDamaged?.Invoke();
 
+        anim.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {
             anim.SetTrigger("Death");
@@ -35,25 +41,33 @@ public class PlayerCombat : MonoBehaviour
     public void Die()
     {
         SFXManager.Play("ChloeDeath", false, 1f);
-        Invoke(nameof(GameOver), 1.5f);
+        Invoke(nameof(GameOver), 0f);
         // Debug.Log("time scale: "+ Time.timeScale);
     }
 
     void GameOver()
     {
-        Time.timeScale = 0;
         anim.enabled = false;
+        gom.GameOver();
+
+        print("PLayerCombat GameOver triggered");
     }
 
     public void AddMaxHealth()
     {
         maxHealth += 25;
-        Heal();
+        currentHealth = maxHealth;
     }
 
-    public void Heal()
+    public void Heal(float healAmount)
     {
-        currentHealth = maxHealth;
+        currentHealth += healAmount;
+        OnPlayerHealed?.Invoke();
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     // void OnParticleCollision(GameObject other)

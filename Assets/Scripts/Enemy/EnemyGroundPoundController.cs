@@ -5,7 +5,7 @@ public class EnemyGroundPoundController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem groundPoundPf;
     [SerializeField] private float blastRange = 31f;
-    private float damage;
+    private int damage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
