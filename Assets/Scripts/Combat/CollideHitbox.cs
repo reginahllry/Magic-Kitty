@@ -4,7 +4,7 @@ public class CollideHitbox : MonoBehaviour
 {
     private PlayerCombat player;
     private AIEnemyController enemy;
-    private float damage;
+    private int damage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

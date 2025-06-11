@@ -7,7 +7,7 @@ public class SpellProjectile : MonoBehaviour
     private int spellType;
     private Rigidbody rb;
     private GameObject enemy;
-    private float damage;
+    private int damage;
 
     void Awake()
     {
@@ -20,6 +20,7 @@ public class SpellProjectile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SFXManager.Play("ChloeSpellCast", true);
         // 1 for fire
         // 2 for water
         // 3 for ice
@@ -70,7 +71,7 @@ public class SpellProjectile : MonoBehaviour
 
             else
             {
-                SFXManager.Play("Hit", true);
+                SFXManager.Play("ChloeSpellHit", true);
             }
 
             anim.SetTrigger("death");

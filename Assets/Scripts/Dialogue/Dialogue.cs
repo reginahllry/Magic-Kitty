@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Dialogue
 {
     public string name;
-    public stirng[] sentence;
+    public string[] sentence;
 
 
     void Update()

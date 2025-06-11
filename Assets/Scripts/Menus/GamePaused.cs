@@ -5,14 +5,22 @@ public class GamePaused : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
     public static bool GameisPaused = false;
+    private string sceneName;
 
     void Start()
     {
         pauseMenuUI.SetActive(false);
+        sceneName = gameObject.scene.name;
     }
 
     void Update()
     {
+        if (sceneName != gameObject.scene.name)
+        {
+            sceneName = gameObject.scene.name;
+            return;   
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameisPaused)
@@ -21,6 +29,8 @@ public class GamePaused : MonoBehaviour
             }
             else
             {
+                if (sceneName == "Level3") return;
+
                 Pause();
             }
         }
@@ -32,10 +42,15 @@ public class GamePaused : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameisPaused = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Pause()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameisPaused = true;
@@ -47,6 +62,7 @@ public class GamePaused : MonoBehaviour
         Time.timeScale = 1f;
         PlayerPrefs.DeleteKey("StartMenu");
         SceneManager.LoadScene("MainMenu");
+        sceneName = "MainMenu";
     }
 
     public void LoadOptionsMenu()
