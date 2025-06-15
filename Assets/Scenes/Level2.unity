@@ -2206,6 +2206,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80db099ef501e2e448460a281cd88a69, type: 3}
+--- !u!1 &1086003744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 674530575412961865, guid: 80db099ef501e2e448460a281cd88a69, type: 3}
+  m_PrefabInstance: {fileID: 1086003743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1176309256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2672,7 +2677,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRangeX: 0
   walkPointRangeZ: 0
-  portal: {fileID: 0}
+  portal: {fileID: 1086003744}
 --- !u!114 &1320048156
 MonoBehaviour:
   m_ObjectHideFlags: 0
