@@ -5,26 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject mainMenuPanel;
-    public GameObject optionsMenuPanel;
-
-    void Start()
-    {
-        string startIn = PlayerPrefs.GetString("StartIn", "MainMenu");
-
-        if (startIn == "Options")
-        {
-            mainMenuPanel.SetActive(false);
-            optionsMenuPanel.SetActive(true);
-        }
-        else
-        {
-            mainMenuPanel.SetActive(true);
-            optionsMenuPanel.SetActive(false);
-        }
-    }
     public void PlayGame()
     {
+        Debug.Log("Opening Level0");
         SceneManager.LoadScene("Level0");
     }
     public void QuitGame()
@@ -32,17 +15,15 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Exit Game");
         Application.Quit();
     }
+    public void LoadCreditScenes()
+    {
+        Debug.Log("Credit Scene");
+        SceneManager.LoadScene("CreditScene");
+    }
+
 
     public void OpenOptionsMenu()
     {
-        mainMenuPanel.SetActive(false);
-        optionsMenuPanel.SetActive(true);
+        SceneManager.LoadScene("OptionsMenu");
     }
-
-    public void BacktoMenu()
-    {
-        optionsMenuPanel.SetActive(false);
-        mainMenuPanel.SetActive(true);
-    }
-
 }

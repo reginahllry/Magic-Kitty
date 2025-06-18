@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1cc0d9f127c974250a039f89c5ebe06a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20719aa6aa5c04d4198cc4ff7920a427, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -988,7 +988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &913062636
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1065,8 +1065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f825e20cd184ceaba9aea5080c6d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 1579332884}
-  optionsMenuPanel: {fileID: 913062635}
 --- !u!1 &934102720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2431,8 +2429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: -62.313}
-  m_SizeDelta: {x: 173.0951, y: 53.8431}
+  m_AnchoredPosition: {x: -16.247, y: -63.1}
+  m_SizeDelta: {x: 167.5896, y: 46.4958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1614747496
 MonoBehaviour:
@@ -2454,7 +2452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1455315443, guid: a4231c447cf834d07828f0ef13ac204a, type: 3}
+  m_Sprite: {fileID: -499775635, guid: 6afdf31bd418f4d8d9ac6173924ef113, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2501,7 +2499,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 1684933924, guid: a4231c447cf834d07828f0ef13ac204a, type: 3}
+    m_HighlightedSprite: {fileID: 2044915587, guid: 6afdf31bd418f4d8d9ac6173924ef113, type: 3}
     m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -2759,8 +2757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f825e20cd184ceaba9aea5080c6d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 1579332884}
-  optionsMenuPanel: {fileID: 913062635}
 --- !u!1 &1783300236
 GameObject:
   m_ObjectHideFlags: 0
