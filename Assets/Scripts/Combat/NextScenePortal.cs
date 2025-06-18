@@ -12,6 +12,11 @@ public class NextScenePortal : MonoBehaviour
         sceneName = gameObject.scene.name;
         playerWin = false;
         gameObject.SetActive(false);
+
+        if (sceneName == "Level0")
+        {
+            playerWin = true;
+        }
     }
 
     // Update is called once per frame
@@ -24,6 +29,10 @@ public class NextScenePortal : MonoBehaviour
     {
         if (other.tag == "Player" && playerWin)
         {
+            if (sceneName == "Level0")
+            {
+                SceneManager.LoadScene("Level1");
+            }
             // print("sceneNumber: " + sceneName[sceneName.Length - 1]);
             if (sceneName == "Level1")
             {
